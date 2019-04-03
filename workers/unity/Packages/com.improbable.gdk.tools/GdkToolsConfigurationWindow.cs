@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,14 +10,16 @@ namespace Improbable.Gdk.Tools
     public class GdkToolsConfigurationWindow : EditorWindow
     {
         internal const string CodegenOutputDirLabel = "Code generator output";
+        internal const string DescriptorOutputDirLabel = "Schema descriptor output";
         internal const string SchemaSourceDirsLabel = "Schema sources";
         internal const string MobileSectionLabel = "Mobile Settings";
         internal const string RuntimeIpLabel = "Local runtime IP";
         internal const string DevAuthTokenSectionLabel = "Dev Auth Token Settings";
-        internal const string DevAuthTokenDirLabel = "Directory to store token in";
+        internal const string DevAuthTokenDirLabel = "Token directory";
         internal const string DevAuthTokenLifetimeLabel = "Token lifetime (days)";
 
         private const string CodeGeneratorLabel = "Code generator";
+        private const string LocalDeploymentLabel = "Local Deployment";
 
         private static GUIContent AddSchemaDirButton;
         private static GUIContent RemoveSchemaDirButton;
@@ -114,6 +115,9 @@ namespace Improbable.Gdk.Tools
             {
                 toolsConfig.CodegenOutputDir =
                     EditorGUILayout.TextField(CodegenOutputDirLabel, toolsConfig.CodegenOutputDir);
+
+                toolsConfig.DescriptorOutputDir =
+                    EditorGUILayout.TextField(DescriptorOutputDirLabel, toolsConfig.DescriptorOutputDir);
 
                 GUILayout.Label(SchemaSourceDirsLabel, EditorStyles.boldLabel);
 
