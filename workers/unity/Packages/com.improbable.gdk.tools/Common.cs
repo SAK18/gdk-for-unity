@@ -39,7 +39,8 @@ namespace Improbable.Gdk.Tools
         }
 
         /// <summary>
-        ///     Finds the path for a given package referenced (indirectly) in the manifest.json.
+        ///     Finds the path for a given package referenced directly in the manifest.json,
+        ///     or indirectly referenced as a package dependency.
         /// </summary>
         public static string GetPackagePath(string packageName)
         {
@@ -66,8 +67,8 @@ namespace Improbable.Gdk.Tools
                 return Path.GetFullPath(cachedPackage);
             }
 
-            // Package is not
-            throw new Exception(
+            // Unable to find given package
+            throw new ArgumentException(
                 $"Could not find '{packageName}', is it in your project's manifest?\n{request.Error?.message}");
         }
 
